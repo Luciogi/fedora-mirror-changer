@@ -3,6 +3,8 @@ Dnf do not choose mirrors based on speed, rather it choose mirrors based on late
 # Dependencies
 `sed`
 # HOW TO Use it?
+## **I will not be responsible if this script damage your system. Use at your own risk.**
+
 1. Download script
 ```
 git clone https://github.com/Luciogi/fedora-mirror-changer.git
