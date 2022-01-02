@@ -9,8 +9,7 @@ addr="/etc/yum.repos.d"
 
 # Take Backup of original files
 backup() {
-# sudo mkdir backup && sudo cp * ./backup/
-mkdir -p $addr/backup && cp $addr/fedora* $addr/backup/
+mkdir -p $addr/backup && cp -n $addr/fedora* $addr/backup/
 echo -e "--> Backup \e[32mDone\e[0m"
 }
 
