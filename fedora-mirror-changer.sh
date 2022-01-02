@@ -16,42 +16,42 @@ echo -e "--> Backup \e[32mDone\e[0m"
 
 #  Modify repo files at /etc/yum.repos.d/
 fedora() {
-    sed -i  -e  's#os/#os/\nbaseurl='$link'releases/$releasever/Everything/$basearch/os#' -e 's/metalink=/#metalink=/' $addr/fedora.repo
-    sed -i  -e  's#debug/tree/#debug/tree/\nbaseurl='$link'releases/$releasever/Everything/$basearch/debug/tree#'  $addr/fedora.repo
-    sed -i  -e  's#source/tree/#source/tree/\nbaseurl='$link'releases/$releasever/Everything/source/tree#'  $addr/fedora.repo
+    sed -i -e 's#os/#os/\nbaseurl='$link'releases/$releasever/Everything/$basearch/os#' -e '/^metalink/ s/metalink=/#metalink=/' $addr/fedora.repo
+    sed -i 's#debug/tree/#debug/tree/\nbaseurl='$link'releases/$releasever/Everything/$basearch/debug/tree#'  $addr/fedora.repo
+    sed -i 's#source/tree/#source/tree/\nbaseurl='$link'releases/$releasever/Everything/source/tree#'  $addr/fedora.repo
     echo -e "--> \e[32mUpdated\e[0m fedora.repo"
 }
 
 fedora_updates() {
-    sed -i -e '3 s#basearch/#basearch/\nbaseurl='$link'updates/$releasever/Everything/$basearch#' -e 's/metalink=/#metalink=/' $addr/fedora-updates.repo
-    sed -i -e 's#/debug/#/debug/\nbaseurl='$link'updates/$releasever/Everything/$basearch/debug#'  $addr/fedora-updates.repo
-    sed -i -e 's#SRPMS/#SRPMS/\nbaseurl='$link'updates/$releasever/Everything/source/tree#'  $addr/fedora-updates.repo
+    sed -i -e '/^#baseurl/ s#basearch/#basearch/\nbaseurl='$link'updates/$releasever/Everything/$basearch#' -e '/^metalink/ s/metalink=/#metalink=/' $addr/fedora-updates.repo
+    sed -i 's#/debug/#/debug/\nbaseurl='$link'updates/$releasever/Everything/$basearch/debug#'  $addr/fedora-updates.repo
+    sed -i 's#SRPMS/#SRPMS/\nbaseurl='$link'updates/$releasever/Everything/source/tree#'  $addr/fedora-updates.repo
     echo -e "--> \e[32mUpdated\e[0m fedora-updates.repo"
     # Testing branch
-    sed -i -e '3 s#basearch/#basearch/\nbaseurl='$link'updates/testing/$releasever/Everything/$basearch#' -e 's/metalink=/#metalink=/' $addr/fedora-updates-testing.repo
-    sed -i -e 's#/debug/#/debug/\nbaseurl='$link'updates/testing/$releasever/Everything/$basearch/debug#' $addr/fedora-updates-testing.repo
-    sed -i -e 's#SRPMS/#SRPMS/\nbaseurl='$link'updates/testing/$releasever/Everything/source/tree#' $addr/fedora-updates-testing.repo
+    sed -i -e '/^#baseurl/ s#basearch/#basearch/\nbaseurl='$link'updates/testing/$releasever/Everything/$basearch#' -e '/^metalink/ s/metalink=/#metalink=/' $addr/fedora-updates-testing.repo
+    sed -i 's#/debug/#/debug/\nbaseurl='$link'updates/testing/$releasever/Everything/$basearch/debug#' $addr/fedora-updates-testing.repo
+    sed -i 's#SRPMS/#SRPMS/\nbaseurl='$link'updates/testing/$releasever/Everything/source/tree#' $addr/fedora-updates-testing.repo
     echo -e "--> \e[32mUpdated\e[0m fedora-updates-testing.repo"
 
 }
 
 fedora_updates_modular() {
-    sed -i -e '3 s#Modular/$basearch/#Modular/$basearch/\nbaseurl='$link'updates/$releasever/Modular/$basearch#' -e 's/metalink=/#metalink=/' $addr/fedora-updates-modular.repo
-    sed -i -e 's#$basearch/debug/#$basearch/debug/\nbaseurl='$link'updates/$releasever/Modular/$basearch/debug#' $addr/fedora-updates-modular.repo
-    sed -i -e 's#SRPMS/#SRPMS/\nbaseurl='$link'updates/$releasever/Modular/source/tree/#' $addr/fedora-updates-modular.repo
+    sed -i -e '/^#baseurl/ s#Modular/$basearch/#Modular/$basearch/\nbaseurl='$link'updates/$releasever/Modular/$basearch#' -e '/^metalink/ s/metalink=/#metalink=/' $addr/fedora-updates-modular.repo
+    sed -i 's#$basearch/debug/#$basearch/debug/\nbaseurl='$link'updates/$releasever/Modular/$basearch/debug#' $addr/fedora-updates-modular.repo
+    sed -i 's#SRPMS/#SRPMS/\nbaseurl='$link'updates/$releasever/Modular/source/tree/#' $addr/fedora-updates-modular.repo
     echo -e "--> \e[32mUpdated\e[0m fedora-updates-modular.repo"
     # Testing branch
-    sed -i -e '3 s#Modular/$basearch/#Modular/$basearch/\nbaseurl='$link'updates/testing/$releasever/Modular/$basearch#' -e 's/metalink=/#metalink=/' $addr/fedora-updates-testing-modular.repo
-    sed -i -e 's#$basearch/debug/#$basearch/debug/\nbaseurl='$link'updates/testing/$releasever/Modular/$basearch/debug#' $addr/fedora-updates-testing-modular.repo
-    sed -i -e 's#SRPMS/#SRPMS/\nbaseurl='$link'updates/testing/$releasever/Modular/source/tree/#' $addr/fedora-updates-testing-modular.repo
+    sed -i -e '/^#baseurl/ s#Modular/$basearch/#Modular/$basearch/\nbaseurl='$link'updates/testing/$releasever/Modular/$basearch#' -e '/^metalink/ s/metalink=/#metalink=/' $addr/fedora-updates-testing-modular.repo
+    sed -i 's#$basearch/debug/#$basearch/debug/\nbaseurl='$link'updates/testing/$releasever/Modular/$basearch/debug#' $addr/fedora-updates-testing-modular.repo
+    sed -i 's#SRPMS/#SRPMS/\nbaseurl='$link'updates/testing/$releasever/Modular/source/tree/#' $addr/fedora-updates-testing-modular.repo
     echo -e "--> \e[32mUpdated\e[0m fedora-updates-testing-modular.repo"
 
 }
 
 fedora_modular() {
-    sed -i -e 's#os/#os/\nbaseurl='$link'releases/$releasever/Modular/$basearch/os#' -e 's/metalink=/#metalink=/'  $addr/fedora-modular.repo
-    sed -i -e 's#/debug/tree/#/debug/tree/\nbaseurl='$link'releases/$releasever/Modular/$basearch/debug/tree/#' $addr/fedora-modular.repo
-    sed -i -e 's#source/tree/#source/tree/\nbaseurl='$link'releases/$releasever/Modular/source/tree#' $addr/fedora-modular.repo
+    sed -i -e 's#os/#os/\nbaseurl='$link'releases/$releasever/Modular/$basearch/os#' -e '/^metalink/ s/metalink=/#metalink=/'  $addr/fedora-modular.repo
+    sed -i 's#/debug/tree/#/debug/tree/\nbaseurl='$link'releases/$releasever/Modular/$basearch/debug/tree/#' $addr/fedora-modular.repo
+    sed -i 's#source/tree/#source/tree/\nbaseurl='$link'releases/$releasever/Modular/source/tree#' $addr/fedora-modular.repo
     echo -e "--> \e[32mUpdated\e[0m fedora-modular.repo"
 
 }
